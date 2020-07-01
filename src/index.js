@@ -1,7 +1,10 @@
 const express = require('express');
+const db = require('./models');
+const authController = require('./controllers/auth');
+
 const app = express();
 
-const authController = require('./controllers/auth');
+
 
 app.use('/auth', authController);
 
@@ -9,6 +12,9 @@ app.get('/', (req, res) => {
     return res.json('API running...');
 });
 
-app.listen(3001, () => {
-    console.log('Listening on por 3001');
+db.sequelize.sync().then(() => {
+    app.listen(3001, () => {
+        console.log('Listening on por 3001');
+    });
 });
+
