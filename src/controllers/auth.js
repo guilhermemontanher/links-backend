@@ -8,9 +8,13 @@ router.get('/sign-in', (req, res) => {
 });
 
 router.get('/sign-up', async (req, res) => {
+    const { email, password } = req.body;
 
-    const email = 'gs.montanher@gmail.com';
-    const password = '123456';
+    const account = await Account.findOne({
+        where: {email}
+    });
+
+    if (account) return res.json('Account already exists');
 
     const hash = bcrypt.hashSync(password, 10);
     console.log(hash);
