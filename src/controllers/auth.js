@@ -14,7 +14,7 @@ router.get('/sign-up', async (req, res) => {
         where: {email}
     });
 
-    if (account) return res.json('Account already exists');
+    if (account) return res.jsonBadRequest(null, 'Account already exists');
 
     const hash = bcrypt.hashSync(password, 10);
     console.log(hash);
@@ -22,7 +22,7 @@ router.get('/sign-up', async (req, res) => {
 
     console.log(result);
 
-    return res.json(result);
+    return res.jsonOK(result, 'Account created');
 });
 
 module.exports = router;
