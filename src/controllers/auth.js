@@ -1,13 +1,15 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { Account } = require('../models');
+const { accountSingUp } = require('../validators/account');
+
 const router = express.Router();
 
 router.get('/sign-in', (req, res) => {
     return res.json('Sing in!');
 });
 
-router.get('/sign-up', async (req, res) => {
+router.get('/sign-up', accountSingUp, async (req, res) => {
     const { email, password } = req.body;
 
     const account = await Account.findOne({

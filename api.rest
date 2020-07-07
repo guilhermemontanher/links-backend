@@ -2,12 +2,11 @@
 @contentType = application/json
 
 
-
-
 ### Create a Account
-GET {{baseUrl}}/auth/sign-in
+GET {{baseUrl}}/auth/sign-up
 Content-Type: {{contentType}}
+
 {
-    "email": "gs.montanher@gmail.com",
+    "email": "gs2po123.montanher@gmail.com1",
     "password": "123456"
 }
